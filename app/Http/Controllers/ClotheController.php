@@ -29,7 +29,7 @@ class ClotheController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|min:5|max:255',
-            'color' => 'required|string|min:5|max:255',
+            'color' => 'required|string|min:2|max:255',
             'url' => 'required|string|min:5|max:255',
             'description' => 'required|string|min:5',
             'brand_id' => 'required|integer|min:1',
@@ -48,8 +48,12 @@ class ClotheController extends Controller
      * @param  \App\Models\Clothe  $clothe
      * @return \Illuminate\Http\Response
      */
-    public function show(Clothe $clothe)
+    public function show($id)
     {
+        $clothe = Clothe::find($id);
+        if (!$clothe) {
+            return response()->json(['error' => 'clothe not found'], 404);
+        }
         return response()->json(new ClotheResource($clothe));
     }
 
@@ -60,11 +64,15 @@ class ClotheController extends Controller
      * @param  \App\Models\Clothe  $clothe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clothe $clothe)
+    public function update(Request $request, $id)
     {
+        $clothe = Clothe::find($id);
+        if (!$clothe) {
+            return response()->json(['error' => 'clothe not found'], 404);
+        }
         $validator = Validator::make($request->all(), [
             'title' => 'string|min:5|max:255',
-            'color' => 'string|min:5|max:255',
+            'color' => 'string|min:2|max:255',
             'url' => 'string|min:5|max:255',
             'description' => 'string|min:5',
             'brand_id' => 'integer|min:1',
@@ -83,8 +91,12 @@ class ClotheController extends Controller
      * @param  \App\Models\Clothe  $clothe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clothe $clothe)
+    public function destroy($id)
     {
+        $clothe = Clothe::find($id);
+        if (!$clothe) {
+            return response()->json(['error' => 'clothe not found'], 404);
+        }
         $clothe->delete();
         return response()->noContent();
     }

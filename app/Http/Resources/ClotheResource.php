@@ -26,7 +26,7 @@ class ClotheResource extends JsonResource
             ],
             'category' => [
                 'id' => $this->clotheCategory->id,
-                'id' => $this->clotheCategory->id,
+                'name' => $this->clotheCategory->name,
             ]
         ];
     }
