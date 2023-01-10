@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Clothe;
+use App\Models\ClotheCategory;
 use Illuminate\Database\Seeder;
 
 class ClotheCategorySeeder extends Seeder
@@ -14,19 +14,19 @@ class ClotheCategorySeeder extends Seeder
      */
     public function run()
     {
-        Clothe::create([
+        ClotheCategory::create([
             'name' => 't-shirts'
         ]);
-        Clothe::create([
+        ClotheCategory::create([
             'name' => 'pants'
         ]);
-        Clothe::create([
+        ClotheCategory::create([
             'name' => 'sundresses'
         ]);
-        Clothe::create([
+        ClotheCategory::create([
             'name' => 'jackets'
         ]);
-        Clothe::create([
+        ClotheCategory::create([
             'name' => 'shoes'
         ]);
     }
